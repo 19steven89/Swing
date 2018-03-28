@@ -5,25 +5,25 @@ import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame{
 
-    private JTextArea txtArea;
-    private JButton btn;
+    private TextPanel textPanel;
+    private Toolbar toolbar;
 
     public MainFrame() {
         super("title1");
         setLayout(new BorderLayout());
 
-        txtArea = new JTextArea();
-        btn = new JButton("Click");
+        toolbar = new Toolbar();
+        textPanel = new TextPanel();
 
-        btn.addActionListener(new ActionListener() {
+        toolbar.setStringListener(new StringListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                txtArea.append("Hello\n");
+            public void textEmitted(String text) {
+                textPanel.appendTxt(text);
             }
         });
 
-        add(txtArea, BorderLayout.CENTER);
-        add(btn, BorderLayout.SOUTH);
+        add(textPanel, BorderLayout.CENTER);
+        add(toolbar, BorderLayout.NORTH);
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
