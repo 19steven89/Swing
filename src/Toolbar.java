@@ -13,7 +13,7 @@ public class Toolbar extends JPanel implements ActionListener{
      * constructor adds 2 buttons to the JPanel using flow layout
      */
     public Toolbar(){
-
+        setBorder(BorderFactory.createEtchedBorder());
         hbtn = new JButton("Hello");
         gbtn = new JButton("Goodbye");
         hbtn.addActionListener(this);
@@ -21,7 +21,6 @@ public class Toolbar extends JPanel implements ActionListener{
 
         //set the buttons to be added to the left of the frame
         setLayout(new FlowLayout(FlowLayout.LEFT));
-
         add(hbtn);
         add(gbtn);
     }

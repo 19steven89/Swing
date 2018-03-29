@@ -7,6 +7,7 @@ public class MainFrame extends JFrame{
 
     private TextPanel textPanel;
     private Toolbar toolbar;
+    private FormPanel formPanel;
 
     public MainFrame() {
         super("title1");
@@ -14,6 +15,7 @@ public class MainFrame extends JFrame{
 
         toolbar = new Toolbar();
         textPanel = new TextPanel();
+        formPanel = new FormPanel();
 
         toolbar.setStringListener(new StringListener() {
             @Override
@@ -22,6 +24,17 @@ public class MainFrame extends JFrame{
             }
         });
 
+        formPanel.setFormListener(new FormListener(){
+            @Override
+            public void formEventOccurred(FormEvent ev){
+                String name = ev.getName();
+                String occupation = ev.getOccupation();
+
+                textPanel.appendTxt(name + ": " + occupation + "\n");
+            }
+        });
+
+        add(formPanel, BorderLayout.WEST);
         add(textPanel, BorderLayout.CENTER);
         add(toolbar, BorderLayout.NORTH);
         setSize(600, 500);
